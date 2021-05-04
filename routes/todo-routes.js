@@ -13,10 +13,12 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  let name = req.body.name;
   console.log("Todo Post Route");
-  //console.log("Name: ", name);
-  console.log(req.body);
+  const obj = {
+    task_name: req.body.task_name,
+    date: new Date(),
+  };
+  console.log(obj);
   res.json({ success: true, msg: "Post Route" });
 });
 
