@@ -1,11 +1,11 @@
 const express = require("express");
-const todo = require("./routes/todo-routes");
 
 const app = express();
 app.use(express.json());
 
 const port = 3000;
 
+const todo = require("./routes/todo-routes");
 app.use("/todo", todo);
 
 app.get("/", (request, response) => {
