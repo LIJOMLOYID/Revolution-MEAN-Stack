@@ -1,10 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const mongoOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+
 // Database connection
-mongoose.connect("mongodb://localhost:27017/todo", (err, db) => {
+mongoose.connect("mongodb://localhost:27017/todo", mongoOptions, (err, db) => {
   if (err) throw err;
-  console.log(db);
+  //console.log(db);
   console.log("Successfully connected to database");
 });
 
