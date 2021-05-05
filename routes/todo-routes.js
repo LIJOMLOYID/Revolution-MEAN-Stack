@@ -25,10 +25,14 @@ router.post("/", (req, res) => {
   //console.log(obj);
 
   // Database Logic
-  Task.addNewTask(obj, (err, added) => {
+  Task.getTaskByTaskName(obj.name, (err, task) => {
     if (err) throw err;
-    console.log(added);
-    res.json({ success: true, msg: "Task Added" });
+    if (task) return res.json({ success: false, msg: "Task already exists." });
+    Task.addNewTask(obj, (err, added) => {
+      if (err) throw err;
+      console.log(added);
+      res.json({ success: true, msg: "Task Added" });
+    });
   });
 });
 
