@@ -16,12 +16,12 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   // Creating a task
-  const obj = {
-    id: req.body._id,
-    task_name: req.body.task_name,
+  const obj = new TaskModel({
+    //id: req.body._id,
+    name: req.body.task_name,
     date: new Date(),
     completed: false,
-  };
+  });
   //console.log(obj);
 
   // Database Logic
