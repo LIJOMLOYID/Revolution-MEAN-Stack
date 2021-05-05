@@ -1,4 +1,12 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
+// Database connection
+mongoose.connect("mongodb://localhost:27017/todo", (err, db) => {
+  if (err) throw err;
+  console.log(db);
+  console.log("Successfully connected to database");
+});
 
 const app = express();
 app.use(express.json());
