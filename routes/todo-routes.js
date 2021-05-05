@@ -4,8 +4,10 @@
 // Get all tasks: Get
 
 const express = require("express");
-
 const router = express.Router();
+
+const TaskModel = require("../models/todo");
+const Task = require("../controllers/todo-controller");
 
 router.get("/", (req, res) => {
   console.log("Todo Get Route");
@@ -13,6 +15,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  // Creating a task
   const obj = {
     id: req.body._id,
     task_name: req.body.task_name,
@@ -21,11 +24,12 @@ router.post("/", (req, res) => {
   };
   //console.log(obj);
 
-  // Data Processed: Date, Input Validation
   // Database Logic
-  // Check if task already exists or not.
-
-  res.json({ success: true, msg: "Task successfully added" });
+  Task.addNewTask(obj, (err, added) => {
+    if (err) throw err;
+    console.log(added);
+    res.json({ success: true, msg: "Task Added" });
+  });
 });
 
 router.patch("/", (req, res) => {
