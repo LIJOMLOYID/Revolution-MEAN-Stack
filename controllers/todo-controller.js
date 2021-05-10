@@ -13,3 +13,7 @@ module.exports.getTaskByTaskName = (name, callback) => {
 module.exports.getAllTasks = (callback) => {
   TaskSchema.find({}, callback);
 };
+
+module.exports.markTaskAsCompleted = (id, callback) => {
+  TaskSchema.updateOne({ _id: id }, { $set: { completed: true } }, callback);
+};

@@ -47,9 +47,11 @@ router.patch("/", (req, res) => {
     task_name: req.body.task_name,
     completed: true,
   };
-  console.log(obj);
-
-  res.json({ success: true, msg: "Task Completed" });
+  Task.markTaskAsCompleted(obj.id, (err, updated) => {
+    if (err) throw err;
+    console.log(updated);
+    res.json({ success: true, msg: "Task Completed" });
+  });
 });
 
 router.delete("/", (req, res) => {
