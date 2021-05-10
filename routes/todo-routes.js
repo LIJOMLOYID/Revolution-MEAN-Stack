@@ -11,7 +11,10 @@ const Task = require("../controllers/todo-controller");
 
 router.get("/", (req, res) => {
   console.log("Todo Get Route");
-  res.json({ success: true, msg: "Todo Get Route" });
+  Task.getAllTasks((err, tasks) => {
+    if (err) throw err;
+    res.json({ success: true, msg: "Todo Get Route", tasks: tasks });
+  });
 });
 
 router.post("/", (req, res) => {

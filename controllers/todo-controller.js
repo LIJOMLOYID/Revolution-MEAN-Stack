@@ -9,3 +9,7 @@ module.exports.addNewTask = (obj, callback) => {
 module.exports.getTaskByTaskName = (name, callback) => {
   TaskSchema.findOne({ name: name }, callback);
 };
+
+module.exports.getAllTasks = (callback) => {
+  TaskSchema.find({}, callback);
+};
