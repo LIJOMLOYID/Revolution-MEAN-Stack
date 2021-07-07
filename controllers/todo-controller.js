@@ -17,3 +17,8 @@ module.exports.getAllTasks = (callback) => {
 module.exports.markTaskAsCompleted = (id, callback) => {
   TaskSchema.updateOne({ _id: id }, { $set: { completed: true } }, callback);
 };
+
+module.exports.deleteTask = (name, callback) => {
+  console.log(name);
+  TaskSchema.deleteOne({ name: name }, callback);
+};

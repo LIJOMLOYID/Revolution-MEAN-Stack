@@ -56,11 +56,12 @@ router.patch("/", (req, res) => {
 
 router.delete("/", (req, res) => {
   console.log("Todo Delete Route");
-  const obj = {
-    id: req.body._id,
-  };
-  console.log(obj);
-  res.json({ success: true, msg: "Task Deleted" });
+  const name = req.body.name;
+  Task.deleteTask(name, (err, deleted) => {
+    if (err) throw err;
+    console.log(deleted);
+    res.json({ success: true, msg: "Task Deleted" });
+  });
 });
 
 module.exports = router;
